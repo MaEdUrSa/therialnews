@@ -1,0 +1,13 @@
+<p style="color: green"><%#= notice %></p>
+
+
+<div class="container text-center ">
+<%= render @observation %>
+
+
+  <%= link_to "Editar observación", edit_observation_path(@observation), class:"btn btn-dark" %> 
+  <%= link_to "Volver a Post", posts_path, class:"btn btn-dark" %>
+  <%#= link_to "Back to observations", observations_path, class:"btn btn-dark" %>
+
+  <%#= button_to "Destroy this observation", @observation, method: :delete %>
+</div>

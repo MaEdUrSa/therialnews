@@ -1,0 +1,47 @@
+<%# <p style="color: green"><%= notice %>
+<%# </p>  %>
+
+<%# <% content_for :title, "Posts" %>
+
+<%# <h1>Posts</h1> %>
+
+<%# <div id="posts"> %>
+  <%# <% @posts.each do |post| %> 
+    <%# <%= render post %> 
+    <%# <p> %>
+      <%# <%= link_to "Show this post", post %> 
+    <%# </p> %>
+  <%# <% end %> 
+<%# </div> %>
+
+<%# <%= link_to "New post", new_post_path %> 
+
+
+<%# <p style="color: green"><%= notice %>
+<%# </p> %>
+<% content_for :title, "Posts" %>
+<div class="container d-flex justify-content-between">
+  <h1 class="my-5 d-flex justify-content-center">Posts</h1>
+  <%# <div> %>
+    <%= link_to "New post", new_post_path, class:"btn btn-dark my-5" %>
+  <%# </div> %>
+</div>
+
+<div class="row justify-content-between">
+  <% @posts.each do |post| %>
+    <div class="card col-5 mb-5">
+      <div class="text-center">
+        <% begin %>
+          <%= image_tag post.image, class: "card-img-top w-25" %>
+          <% rescue Sprockets::Rails::Helper::AssetNotFound %>
+            <p class="my-5">No image found</p>
+        <% end %>
+      </div>
+      <div class="card-body">
+        <h5 class="card-title"><%= post.title %></h5>
+        <p class="card-text"><%= post.description.truncate(50) %></p>
+        <%= link_to "Ver Comentarios", post_path(post), class:"btn btn-primary d-flex justify-content-center" %>
+      </div>
+    </div>
+  <% end %>
+</div>

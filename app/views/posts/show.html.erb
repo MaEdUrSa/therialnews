@@ -1,0 +1,62 @@
+<%# <p style="color: green"><%= notice %>
+<%# </p> %>
+
+<%# <%= render @post %> 
+
+<%# <div> %>
+  <%# <%= link_to "Edit this post", edit_post_path(@post) %> 
+  <%# <%= link_to "Back to posts", posts_path %> 
+
+  <%# <%= button_to "Destroy this post", @post, method: :delete %>
+<%# </div> %>
+
+<h2 class="my-5 text-center">Posteo ==> <%= @post.title %></h2>
+<div class="text-center mb-5">
+  <% begin %>
+    <%= image_tag @post.image, class: "card-img-top w-25" %>
+  <% rescue Sprockets::Rails::Helper::AssetNotFound %>
+    <p class="my-5">No image found</p>
+  <% end %>
+</div>
+  <h3 class="text-center"> Descripcion del poste realizado</h3>
+<div class="mb-5  text-center">
+  <%= @post.description %>
+</div>
+
+<%# #--------------  cometarios %>
+ <p class="px-2"> <HR size="6" width="97%" align="center">  </p> 
+<h3 class=" text-center">Comentarios </h3>
+ <p class="px-2 mb-4"> <HR size="6" width="97%" align="center">  </p> 
+<% @observations.each do |observations| %>
+    <div class="container">
+        <%#= if observations.content.exists?  %>
+          <p>Autor: <%= observations.user.name  %> </p>   
+          <p>Comentario: <%= observations.content  %> </p> 
+
+          <% if user_signed_in? %>
+              <%= link_to "Editar", edit_observation_path(observations.id), class:"btn btn-dark" %>
+          <% end %>            
+          <p class="px-2"> <HR size="8" width="97%" align="center">  </p> 
+        <%# else %>
+          <%# <p>No existe comentarios</p> %>
+        <%# end %>
+    </div>
+<% end %> 
+<%# --------------  cometarios %>
+
+
+<div class="d-flex gap-3 my-5">
+  <%= link_to "Volver a Posts", posts_path, class:"btn btn-dark" %>
+  <% if user_signed_in? %>
+    <%# if current_user.id == @post.user_id %>
+      <%= link_to "Editar", edit_post_path(@post), class:"btn btn-dark" %>
+    <%# end %>
+    <%# if current_user.id == @post.user_id %>
+    <%# #--------------  cometarios %>
+      <%= link_to "Nuevo Comentario", new_observation_path, class:"btn btn-dark"  %> 
+      <%= button_to "Eliminar", @post , class:"btn btn-danger btn-sm", method: :delete %> 
+    <%# end %>
+  <% end %>
+
+
+  </div>

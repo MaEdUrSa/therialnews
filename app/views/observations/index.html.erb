@@ -1,0 +1,17 @@
+<%# <p style="color: green"><%= notice %>
+<%# </p> %>
+
+<% content_for :title, "Observations" %>
+
+<h2 class="text-centetr">Observaciones</h2>
+
+<div id="observations">
+  <% @observations.each do |observation| %>
+    <%= render observation %>
+    <p>
+      <%= link_to "Retornar", observation, class:"btn btn-dark" %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "Nueva observación", new_observation_path,  class:"btn btn-dark"%>
